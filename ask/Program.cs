@@ -1,11 +1,14 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 
+var envVars = DotEnv.Read();
 if (args.Length > 0)
 {
     HttpClient client = new HttpClient();
 
-    client.DefaultRequestHeaders.Add("authorization", "Bearer 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");
+    var apiKey = envVars["openaikey"];
+
+    client.DefaultRequestHeaders.Add("authorization", $"Bearer {apiKey}");
 
     var content = new StringContent(
         "{\"model\": \"text-davinci-001\", \"prompt\": \""+ args[0] +"\",\"temperature\": 1,\"max_tokens\": 100}",
@@ -21,7 +24,7 @@ if (args.Length > 0)
     {
         var dyData = JsonConvert.DeserializeObject<dynamic>(responseString);
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine($"---> API Response is: {dyData.choices[0].text}");
+        Console.WriteLine($"---> API Response is: {dyData!.choices[0].text}");
         Console.ResetColor();
     }
     catch (Exception e)
