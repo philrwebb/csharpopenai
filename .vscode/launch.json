@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/ask/bin/Debug/net7.0/ask.dll",
-            "args": ["how do you list files in a directory in windows"],
+            "args": ["how do you list all running docker containers"],
             "cwd": "${workspaceFolder}/ask",
             "console": "internalConsole",
             "stopAtEntry": false
